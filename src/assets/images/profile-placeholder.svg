@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <!-- Background Circle -->
+  <circle cx="200" cy="200" r="200" fill="#3B82F6" />
+  
+  <!-- Head -->
+  <circle cx="200" cy="150" r="70" fill="#F9FAFB" />
+  
+  <!-- Body -->
+  <path d="M200 230 L200 350 Q130 330 100 280 Q120 250 200 230" fill="#F9FAFB" />
+  <path d="M200 230 L200 350 Q270 330 300 280 Q280 250 200 230" fill="#F9FAFB" />
+  
+  <!-- Text -->
+  <text x="200" y="380" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#F9FAFB">Shubham</text>
+</svg>
