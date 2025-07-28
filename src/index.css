@@ -2,79 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.testimonial-swiper {
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
 
-.swiper-slide {
-  background-position: center;
-  background-size: cover;
-  width: 320px;
-  height: 420px;
-  transition: transform 0.5s ease;
-}
-
-.swiper-slide-shadow-left,
-.swiper-slide-shadow-right {
-  background-image: none !important;
-}
-
-.swiper-slide-active {
-  transform: scale(1.1);
-}
-
-.slider-controler {
-  position: relative;
-  bottom: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slider-arrow {
-  background: rgba(255, 255, 255, 0.1);
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  filter: blur(0px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  transition: all 0.3s ease;
-}
-
-.slider-arrow:hover {
-  background: rgba(138, 43, 226, 0.7);
-  color: #fff;
-}
-
-.slider-arrow::after {
-  font-size: 1.5rem !important;
-}
-
-.swiper-pagination {
-  position: relative;
-  width: 15rem !important;
-  bottom: 1rem;
-}
-
-.swiper-pagination .swiper-pagination-bullet {
-  filter: blur(0px);
-  background: rgba(255, 255, 255, 0.5);
-  width: 10px;
-  height: 10px;
-  opacity: 0.7;
-  transition: all 0.3s ease;
-}
-
-.swiper-pagination .swiper-pagination-bullet-active {
-  background: #8a2be2;
-  width: 25px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px #8a2be2, 0 0 20px #8a2be2;
-}
 
 @layer base {
   html {

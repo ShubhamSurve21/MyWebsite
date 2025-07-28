@@ -8,7 +8,7 @@ A modern, responsive portfolio website for Shubham, a Full Stack Web Developer. 
 - **Dark/Light Mode**: Toggle between dark and light themes
 - **Smooth Animations**: Using Framer Motion for smooth page transitions and animations
 - **Modern UI**: Clean and professional design with Tailwind CSS
-- **Interactive Sections**: Hero, About, Services, Projects, Testimonials, and Contact sections
+- **Interactive Sections**: Hero, About, Services, Projects, and Contact sections
 - **Contact Form**: Integrated with EmailJS for sending emails directly from the website
 
 ## Tech Stack

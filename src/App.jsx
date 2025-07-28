@@ -5,7 +5,6 @@ import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
 import ServicesSection from './components/ServicesSection'
 import ProjectsSection from './components/ProjectsSection'
-import TestimonialsSection from './components/TestimonialsSection'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
 import AIAssistant from './components/AIAssistant'
@@ -24,7 +23,6 @@ function App() {
         <AboutSection />
         <ServicesSection />
         <ProjectsSection />
-        <TestimonialsSection />
         <ContactSection />
       </motion.main>
       <Footer />

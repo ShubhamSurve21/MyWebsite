@@ -99,13 +99,12 @@ const getCurrentSection = () => {
   if (typeof window === 'undefined') return 'hero';
   
   const sections = [
-    { id: 'hero', element: document.getElementById('hero') },
-    { id: 'about', element: document.getElementById('about') },
-    { id: 'services', element: document.getElementById('services') },
-    { id: 'projects', element: document.getElementById('projects') },
-    { id: 'testimonials', element: document.getElementById('testimonials') },
-    { id: 'contact', element: document.getElementById('contact') },
-  ].filter(section => section.element);
+      { id: 'hero', element: document.getElementById('hero') },
+      { id: 'about', element: document.getElementById('about') },
+      { id: 'services', element: document.getElementById('services') },
+      { id: 'projects', element: document.getElementById('projects') },
+      { id: 'contact', element: document.getElementById('contact') },
+    ].filter(section => section.element);
   
   const scrollPosition = window.scrollY + window.innerHeight / 3;
   
@@ -341,13 +340,7 @@ export const AIAssistantProvider = ({ children }) => {
           "What technologies were used in these projects?",
           "Are there any live demos I can see?"
         ];
-      case 'testimonials':
-        return [
-          "Who has Shubham worked with?",
-          "What do clients say about Shubham?",
-          "Does Shubham have any case studies?",
-          "How can I provide feedback?"
-        ];
+
       case 'contact':
         return [
           "What's the best way to contact Shubham?",
@@ -366,7 +359,7 @@ export const AIAssistantProvider = ({ children }) => {
     
     // Check for navigation commands
     if (lowerText.includes('scroll to') || lowerText.includes('go to') || lowerText.includes('show me')) {
-      const sections = ['about', 'services', 'projects', 'testimonials', 'contact'];
+      const sections = ['about', 'services', 'projects', 'contact'];
       for (const section of sections) {
         if (lowerText.includes(section)) {
           // In a real implementation, you would scroll to the section here
@@ -436,8 +429,7 @@ export const AIAssistantProvider = ({ children }) => {
         return "You're currently viewing Shubham's services. He offers expertise in full-stack development, AI integration, cloud architecture, and mobile app development. Which service interests you most?";
       case 'projects':
         return "You're looking at Shubham's project portfolio. Each project demonstrates his technical skills and problem-solving abilities. Would you like details about a specific project?";
-      case 'testimonials':
-        return "These testimonials reflect the quality of Shubham's work and client satisfaction. His collaborative approach and technical expertise are consistently praised. Would you like to know more about his work process?";
+
       case 'contact':
         return "Ready to reach out? You can use this contact form, email directly at shubham@example.com, or schedule a call. What's your preferred method of communication?";
       default:
