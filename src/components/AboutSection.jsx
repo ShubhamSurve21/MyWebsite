@@ -84,6 +84,37 @@ const AboutSection = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"></div>
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
       
+      {/* 3D Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-16 h-16 md:w-24 md:h-24"
+            style={{
+              left: `${Math.random() * 90}%`,
+              top: `${Math.random() * 90}%`,
+              background: `linear-gradient(135deg, ${i % 2 === 0 ? 'rgba(99, 102, 241, 0.2)' : 'rgba(139, 92, 246, 0.2)'}, transparent)`,
+              borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+              boxShadow: `0 0 20px ${i % 2 === 0 ? 'rgba(99, 102, 241, 0.3)' : 'rgba(139, 92, 246, 0.3)'}`,
+              zIndex: 0,
+            }}
+            animate={{
+              x: [0, Math.random() * 50 - 25],
+              y: [0, Math.random() * 50 - 25],
+              rotate: [0, 360],
+              borderRadius: ['30% 70% 70% 30% / 30% 30% 70% 70%', '50% 50% 50% 50% / 50% 50% 50% 50%', '30% 70% 70% 30% / 30% 30% 70% 70%'],
+            }}
+            transition={{
+              duration: 15 + Math.random() * 10,
+              repeat: Infinity,
+              repeatType: 'mirror',
+              ease: 'easeInOut',
+              delay: i * 2,
+            }}
+          />
+        ))}
+      </div>
+      
       {/* Gradient Orbs */}
       <motion.div
         className="absolute top-1/4 -left-32 w-64 h-64 bg-primary-500/20 rounded-full blur-3xl"

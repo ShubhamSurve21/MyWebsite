@@ -3,17 +3,27 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import { inSphere } from 'maath/random';
+import * as THREE from 'three';
 import { FiArrowDown, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import { FaReact, FaNodeJs, FaAws } from 'react-icons/fa';
 import { SiTypescript, SiMongodb, SiTailwindcss } from 'react-icons/si';
 
 const Stars = (props) => {
   const ref = useRef();
-  const sphere = inSphere(new Float32Array(5000), { radius: 1.2 });
+  // Increased number of stars and radius for more immersive effect
+  const sphere = inSphere(new Float32Array(8000), { radius: 1.5 });
 
   useFrame((state, delta) => {
-    ref.current.rotation.x -= delta / 10;
-    ref.current.rotation.y -= delta / 15;
+    // More dynamic rotation based on mouse position
+    const mouseX = state.mouse.x * 0.1;
+    const mouseY = state.mouse.y * 0.1;
+    
+    ref.current.rotation.x -= delta / 10 + mouseY * 0.01;
+    ref.current.rotation.y -= delta / 15 + mouseX * 0.01;
+    
+    // Subtle pulsing effect
+    ref.current.scale.x = ref.current.scale.y = ref.current.scale.z = 
+      1 + Math.sin(state.clock.elapsedTime * 0.3) * 0.05;
   });
 
   return (
@@ -22,9 +32,11 @@ const Stars = (props) => {
         <PointMaterial
           transparent
           color="#ffffff"
-          size={0.002}
+          size={0.0025}
           sizeAttenuation={true}
           depthWrite={false}
+          // Added color blending for more vibrant stars
+          blending={THREE.AdditiveBlending}
         />
       </Points>
     </group>

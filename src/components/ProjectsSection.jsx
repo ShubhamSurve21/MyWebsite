@@ -155,6 +155,72 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="section-padding bg-gray-900 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
+      
+      {/* 3D Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Floating code brackets */}
+        {[...Array(4)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-3xl md:text-5xl font-mono opacity-10"
+            style={{
+              left: `${Math.random() * 90}%`,
+              top: `${Math.random() * 90}%`,
+              color: i % 2 === 0 ? '#6366f1' : '#8b5cf6',
+              zIndex: 0,
+              textShadow: `0 0 10px ${i % 2 === 0 ? '#6366f1' : '#8b5cf6'}`,
+            }}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: [0.05, 0.1, 0.05],
+              x: [0, Math.random() * 50 - 25],
+              y: [0, Math.random() * 50 - 25],
+              rotate: [0, Math.random() > 0.5 ? 180 : -180],
+            }}
+            transition={{
+              duration: 15 + Math.random() * 10,
+              repeat: Infinity,
+              repeatType: 'mirror',
+              ease: 'easeInOut',
+              delay: i * 2,
+            }}
+          >
+            {i % 2 === 0 ? '{' : '}'}
+          </motion.div>
+        ))}
+        
+        {/* Floating tech symbols */}
+        {[...Array(4)].map((_, i) => (
+          <motion.div
+            key={i + 4}
+            className="absolute text-3xl md:text-5xl opacity-10"
+            style={{
+              left: `${Math.random() * 90}%`,
+              top: `${Math.random() * 90}%`,
+              color: i % 2 === 0 ? '#6366f1' : '#8b5cf6',
+              zIndex: 0,
+              textShadow: `0 0 10px ${i % 2 === 0 ? '#6366f1' : '#8b5cf6'}`,
+            }}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: [0.05, 0.1, 0.05],
+              x: [0, Math.random() * 50 - 25],
+              y: [0, Math.random() * 50 - 25],
+              rotate: [0, Math.random() > 0.5 ? 180 : -180],
+            }}
+            transition={{
+              duration: 15 + Math.random() * 10,
+              repeat: Infinity,
+              repeatType: 'mirror',
+              ease: 'easeInOut',
+              delay: i * 2 + 1,
+            }}
+          >
+            {i % 4 === 0 ? '<>' : i % 4 === 1 ? '/>' : i % 4 === 2 ? '#' : '()' }
+          </motion.div>
+        ))}
+      </div>
+      
       <div className="container-custom relative z-10">
         <motion.div
           variants={containerVariants}

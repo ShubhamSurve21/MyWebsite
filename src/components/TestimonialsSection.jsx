@@ -98,6 +98,73 @@ const TestimonialsSection = () => {
   return (
     <section id="testimonials" className="section-padding bg-gray-900 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
+      
+      {/* 3D Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Floating stars */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute"
+            style={{
+              left: `${Math.random() * 90}%`,
+              top: `${Math.random() * 90}%`,
+              color: i % 2 === 0 ? '#fbbf24' : '#f59e0b',
+              zIndex: 0,
+              fontSize: `${Math.random() * 20 + 20}px`,
+              opacity: 0.2,
+              filter: `blur(${Math.random() * 2}px)`,
+            }}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: [0.1, 0.3, 0.1],
+              scale: [1, 1.2, 1],
+              x: [0, Math.random() * 30 - 15],
+              y: [0, Math.random() * 30 - 15],
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 10 + Math.random() * 5,
+              repeat: Infinity,
+              repeatType: 'mirror',
+              ease: 'easeInOut',
+              delay: i * 1.5,
+            }}
+          >
+            <FiStar />
+          </motion.div>
+        ))}
+        
+        {/* Floating quote marks */}
+        {[...Array(4)].map((_, i) => (
+          <motion.div
+            key={i + 6}
+            className="absolute font-serif text-4xl md:text-6xl font-bold opacity-10"
+            style={{
+              left: `${Math.random() * 90}%`,
+              top: `${Math.random() * 90}%`,
+              color: i % 2 === 0 ? '#fbbf24' : '#f59e0b',
+              zIndex: 0,
+            }}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: [0.05, 0.1, 0.05],
+              x: [0, Math.random() * 40 - 20],
+              y: [0, Math.random() * 40 - 20],
+              rotate: [0, Math.random() > 0.5 ? 15 : -15],
+            }}
+            transition={{
+              duration: 15 + Math.random() * 10,
+              repeat: Infinity,
+              repeatType: 'mirror',
+              ease: 'easeInOut',
+              delay: i * 2,
+            }}
+          >
+            {i % 2 === 0 ? '"' : '"'}
+          </motion.div>
+        ))}
+      </div>
       <div className="container-custom relative z-10">
         <motion.div
           variants={containerVariants}

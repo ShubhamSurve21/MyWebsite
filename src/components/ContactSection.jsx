@@ -122,8 +122,40 @@ const ContactSection = () => {
   }
 
   return (
-    <section id="contact" className="section-padding bg-gray-50 dark:bg-gray-800">
-      <div className="container-custom">
+    <section id="contact" className="section-padding bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+      {/* Floating 3D elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-20 h-20 md:w-32 md:h-32"
+            style={{
+              left: `${Math.random() * 90}%`,
+              top: `${Math.random() * 90}%`,
+              background: `linear-gradient(135deg, ${i % 2 === 0 ? 'rgba(59, 130, 246, 0.1)' : 'rgba(139, 92, 246, 0.1)'}, transparent)`,
+              borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
+              backdropFilter: 'blur(8px)',
+              border: '1px solid rgba(255, 255, 255, 0.05)',
+              zIndex: 0,
+            }}
+            animate={{
+              x: [0, Math.random() * 40 - 20],
+              y: [0, Math.random() * 40 - 20],
+              rotate: [0, 360],
+              borderRadius: ['60% 40% 30% 70% / 60% 30% 70% 40%', '40% 60% 70% 30% / 40% 70% 30% 60%', '60% 40% 30% 70% / 60% 30% 70% 40%'],
+            }}
+            transition={{
+              duration: 20 + Math.random() * 10,
+              repeat: Infinity,
+              repeatType: 'mirror',
+              ease: 'easeInOut',
+              delay: i * 3,
+            }}
+          />
+        ))}
+      </div>
+      
+      <div className="container-custom relative z-10">
         <motion.div
           variants={containerVariants}
           initial="visible"

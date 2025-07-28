@@ -121,8 +121,8 @@ const AIAvatar = ({ size = 'md', pulseEffect = false }) => {
           />
         </svg>
         
-        {/* Lottie animation - uncomment and replace URL with your animation */}
-        {/* <Player
+        {/* Lottie animation for AI Avatar */}
+        <Player
           ref={playerRef}
           autoplay={true}
           loop={true}
@@ -133,7 +133,7 @@ const AIAvatar = ({ size = 'md', pulseEffect = false }) => {
               : "https://assets9.lottiefiles.com/packages/lf20_xdfeea1w.json"}
           style={{ width: '100%', height: '100%' }}
           speed={animationState === 'thinking' ? 1.5 : 1}
-        /> */}
+        />
       </div>
       
       {/* Glow effect */}
