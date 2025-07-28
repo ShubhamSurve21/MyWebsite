@@ -25,11 +25,7 @@ import {
 const AboutSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const experience = [
-    { year: '2023', title: 'Senior Developer', company: 'Tech Innovations Inc.', description: 'Leading a team to build scalable web applications using Next.js and AWS.' },
-    { year: '2021', title: 'Mid-Level Developer', company: 'Creative Solutions', description: 'Developed and maintained client websites, focusing on performance and user experience.' },
-    { year: '2020', title: 'Junior Developer', company: 'Startup Hub', description: 'Gained foundational experience in full-stack development with the MERN stack.' },
-  ];
+  // Experience section removed as requested
   const techStack = {
     Frontend: [
       { name: 'React', icon: FaReact, color: 'text-blue-500' },
@@ -157,9 +153,9 @@ const AboutSection = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
+          <div className="grid grid-cols-1 gap-16 items-start">
             {/* Bio Content */}
-            <motion.div variants={itemVariants} className="lg:col-span-2 space-y-6">
+            <motion.div variants={itemVariants} className="space-y-6">
               <h3 className="text-3xl font-bold text-white">
                 A Passion for Building Digital Experiences
               </h3>
@@ -178,35 +174,6 @@ const AboutSection = () => {
                   <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
                   <span className="text-sm font-medium text-green-400">Available for New Projects</span>
                 </div>
-              </div>
-            </motion.div>
-
-            {/* Experience Timeline */}
-            <motion.div ref={ref} variants={itemVariants} className="lg:col-span-3">
-              <h3 className="text-2xl font-bold text-white mb-8">My Journey</h3>
-              <div className="relative border-l-2 border-white/10">
-                {experience.map((item, index) => (
-                  <motion.div 
-                    key={index} 
-                    className="mb-10 ml-6"
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: index * 0.2 }}
-                  >
-                    <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-900 rounded-full -left-3 ring-8 ring-blue-900/30">
-                      <svg className="w-2.5 h-2.5 text-blue-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4Z"/>
-                        <path d="M0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                      </svg>
-                    </span>
-                    <h4 className="flex items-center mb-1 text-lg font-semibold text-white">
-                      {item.title} 
-                      <span className="text-blue-400 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full bg-blue-900 ml-3"> {item.year}</span>
-                    </h4>
-                    <p className="block mb-2 text-sm font-normal leading-none text-gray-500">{item.company}</p>
-                    <p className="text-base font-normal text-gray-400">{item.description}</p>
-                  </motion.div>
-                ))}
               </div>
             </motion.div>
           </div>
