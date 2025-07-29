@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion'
+import React, { useRef, useState } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import {
   FaReact,
   FaNodeJs,
@@ -8,6 +8,10 @@ import {
   FaGitAlt,
   FaDocker,
   FaAws,
+  FaCode,
+  FaLaptopCode,
+  FaServer,
+  FaBrain,
 } from 'react-icons/fa'
 import {
   SiTypescript,
@@ -20,11 +24,13 @@ import {
   SiGraphql,
   SiKubernetes,
   SiVercel,
+  SiThreedotjs,
 } from 'react-icons/si'
 
 const AboutSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const [activeTab, setActiveTab] = useState('profile');
   // Experience section removed as requested
   const techStack = {
     Frontend: [
@@ -73,30 +79,39 @@ const AboutSection = () => {
       }
     }
   }
+  
+  const tabVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+    exit: { opacity: 0, x: 20, transition: { duration: 0.3 } }
+  }
 
   return (
-    <section id="about" className="section-padding relative overflow-hidden">
-      {/* Background Elements */}
+    <section id="about" ref={ref} className="section-padding relative overflow-hidden">
+      {/* Futuristic Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"></div>
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
       
-      {/* 3D Floating Elements */}
+      {/* Animated Grid Pattern */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMDIwMjAiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRoLTJ2LTRoMnY0em0wLTZoLTJ2LTRoMnY0em0wLTZoLTJ2LTRoMnY0em0wLTZoLTJWNmgydjR6bTAgMjRoLTJ2LTRoMnY0em0wIDZoLTJ2LTRoMnY0em0wIDZoLTJ2LTRoMnY0em0wIDZoLTJ2LTRoMnY0em0tNi0yNGgtMnYtNGgydjR6bTAgNmgtMnYtNGgydjR6bTAgNmgtMnYtNGgydjR6bTAgNmgtMnYtNGgydjR6bTAgNmgtMnYtNGgydjR6bS02LTQyaC0ydi00aDJ2NHptMCA2aC0ydi00aDJ2NHptMCA2aC0ydi00aDJ2NHptMCA2aC0ydi00aDJ2NHptMCA2aC0ydi00aDJ2NHptMCA2aC0ydi00aDJ2NHptMCA2aC0ydi00aDJ2NHptMCA2aC0ydi00aDJ2NHptLTYtNDJoLTJ2LTRoMnY0em0wIDZoLTJ2LTRoMnY0em0wIDZoLTJ2LTRoMnY0em0wIDZoLTJ2LTRoMnY0em0wIDZoLTJ2LTRoMnY0em0wIDZoLTJ2LTRoMnY0em0wIDZoLTJ2LTRoMnY0em0wIDZoLTJ2LTRoMnY0em0tNi00MmgtMnYtNGgydjR6bTAgNmgtMnYtNGgydjR6bTAgNmgtMnYtNGgydjR6bTAgNmgtMnYtNGgydjR6bTAgNmgtMnYtNGgydjR6bTAgNmgtMnYtNGgydjR6bTAgNmgtMnYtNGgydjR6bTAgNmgtMnYtNGgydjR6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=')] opacity-30 animate-pulse-slow"></div>
+      
+      {/* Futuristic Floating Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(5)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-16 h-16 md:w-24 md:h-24"
             style={{
               left: `${Math.random() * 90}%`,
               top: `${Math.random() * 90}%`,
-              background: `linear-gradient(135deg, ${i % 2 === 0 ? 'rgba(99, 102, 241, 0.2)' : 'rgba(139, 92, 246, 0.2)'}, transparent)`,
+              background: `linear-gradient(135deg, ${i % 3 === 0 ? 'rgba(59, 130, 246, 0.2)' : i % 3 === 1 ? 'rgba(139, 92, 246, 0.2)' : 'rgba(14, 165, 233, 0.2)'}, transparent)`,
               borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
-              boxShadow: `0 0 20px ${i % 2 === 0 ? 'rgba(99, 102, 241, 0.3)' : 'rgba(139, 92, 246, 0.3)'}`,
+              boxShadow: `0 0 20px ${i % 3 === 0 ? 'rgba(59, 130, 246, 0.3)' : i % 3 === 1 ? 'rgba(139, 92, 246, 0.3)' : 'rgba(14, 165, 233, 0.3)'}`,
               zIndex: 0,
+              backdropFilter: 'blur(8px)',
             }}
             animate={{
-              x: [0, Math.random() * 50 - 25],
-              y: [0, Math.random() * 50 - 25],
+              x: [0, Math.random() * 60 - 30],
+              y: [0, Math.random() * 60 - 30],
               rotate: [0, 360],
               borderRadius: ['30% 70% 70% 30% / 30% 30% 70% 70%', '50% 50% 50% 50% / 50% 50% 50% 50%', '30% 70% 70% 30% / 30% 30% 70% 70%'],
             }}
@@ -105,18 +120,19 @@ const AboutSection = () => {
               repeat: Infinity,
               repeatType: 'mirror',
               ease: 'easeInOut',
-              delay: i * 2,
+              delay: i * 1.5,
             }}
           />
         ))}
       </div>
       
-      {/* Gradient Orbs */}
+      {/* Holographic Gradient Orbs */}
       <motion.div
-        className="absolute top-1/4 -left-32 w-64 h-64 bg-primary-500/20 rounded-full blur-3xl"
+        className="absolute top-1/4 -left-32 w-80 h-80 bg-primary-500/20 rounded-full blur-3xl"
         animate={{
           scale: [1, 1.2, 1],
-          opacity: [0.2, 0.3, 0.2],
+          opacity: [0.2, 0.4, 0.2],
+          filter: ['blur(40px)', 'blur(60px)', 'blur(40px)'],
         }}
         transition={{
           duration: 8,
@@ -125,10 +141,11 @@ const AboutSection = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-1/4 -right-32 w-64 h-64 bg-secondary-500/20 rounded-full blur-3xl"
+        className="absolute bottom-1/4 -right-32 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"
         animate={{
           scale: [1.2, 1, 1.2],
-          opacity: [0.2, 0.3, 0.2],
+          opacity: [0.2, 0.4, 0.2],
+          filter: ['blur(40px)', 'blur(60px)', 'blur(40px)'],
         }}
         transition={{
           duration: 8,
@@ -136,86 +153,259 @@ const AboutSection = () => {
           ease: "easeInOut",
         }}
       />
+      
+      {/* Digital Circuit Lines */}
+      <div className="absolute inset-0 overflow-hidden opacity-20">
+        <svg className="absolute w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <motion.path
+            d="M0,50 Q25,30 50,50 T100,50"
+            stroke="rgba(59, 130, 246, 0.5)"
+            strokeWidth="0.2"
+            fill="none"
+            animate={{
+              d: [
+                "M0,50 Q25,30 50,50 T100,50",
+                "M0,50 Q25,70 50,50 T100,50",
+                "M0,50 Q25,30 50,50 T100,50"
+              ]
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.path
+            d="M0,30 Q25,50 50,30 T100,30"
+            stroke="rgba(139, 92, 246, 0.5)"
+            strokeWidth="0.2"
+            fill="none"
+            animate={{
+              d: [
+                "M0,30 Q25,50 50,30 T100,30",
+                "M0,30 Q25,10 50,30 T100,30",
+                "M0,30 Q25,50 50,30 T100,30"
+              ]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </svg>
+      </div>
 
       <div className="container-custom relative z-10">
         <motion.div
           variants={containerVariants}
-          initial="visible"
+          initial="hidden"
+          animate="visible"
           className="max-w-6xl mx-auto"
         >
-          {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-primary-400 to-white animate-gradient-x">
-              About Me
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Passionate full-stack developer with expertise in modern web technologies
+          {/* Futuristic Section Header */}
+          <motion.div variants={itemVariants} className="text-center mb-12">
+            <div className="relative inline-block">
+              <motion.div 
+                className="absolute -inset-1 bg-gradient-to-r from-primary-600 via-blue-500 to-primary-600 rounded-lg blur opacity-30"
+                animate={{ opacity: [0.2, 0.4, 0.2] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+              <h2 className="relative text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-primary-400 to-white">
+                <span className="tracking-tight">ABOUT</span> <span className="font-light">ME</span>
+              </h2>
+            </div>
+            <div className="h-1 w-20 bg-gradient-to-r from-primary-500 to-blue-500 mx-auto mb-6 rounded-full"></div>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto font-light tracking-wide">
+              <span className="text-primary-400 font-normal">Full-stack developer</span> crafting next-generation digital experiences
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-16 items-start">
-            {/* Bio Content */}
-            <motion.div variants={itemVariants} className="space-y-6">
-              <h3 className="text-3xl font-bold text-white">
-                A Passion for Building Digital Experiences
-              </h3>
-              
-              <div className="space-y-4 text-gray-400">
-                <p>
-                  With a foundation in full-stack development, I thrive on turning complex problems into elegant, user-friendly solutions. My journey is driven by a relentless curiosity and a passion for leveraging technology to create impactful digital products.
-                </p>
-                <p>
-                  I am committed to writing clean, efficient, and maintainable code while continuously exploring new technologies to push the boundaries of what's possible on the web.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-4 pt-4">
-                <div className="flex items-center space-x-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full">
-                  <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-                  <span className="text-sm font-medium text-green-400">Available for New Projects</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Tech Stack */}
-          <motion.div variants={itemVariants} className="mt-12 sm:mt-16 md:mt-20">
-            <h3 className="text-3xl font-bold text-center mb-8 sm:mb-10 md:mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-white to-secondary-400">
-              My Tech Stack
-            </h3>
-            
-            <div className="space-y-8 sm:space-y-10 md:space-y-12">
-              {Object.entries(techStack).map(([category, technologies]) => (
-                <div key={category}>
-                  <h4 className="text-xl font-semibold mb-4 sm:mb-6 text-center text-gray-700 dark:text-gray-300">
-                    {category}
-                  </h4>
-                  
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-6" style={{ perspective: '1000px' }}>
-                    {technologies.map((tech, index) => (
-                      <motion.div
-                        key={tech.name}
-                        variants={{
-                          hidden: { opacity: 0, scale: 0.5, rotateY: -90 },
-                          visible: { opacity: 1, scale: 1, rotateY: 0 }
-                        }}
-                        initial="hidden"
-                        animate={isInView ? "visible" : "hidden"}
-                        transition={{ duration: 0.5, delay: index * 0.1, type: 'spring', stiffness: 100 }}
-                        whileHover={{ scale: 1.1, y: -5, boxShadow: '0 0 20px rgba(var(--primary-500), 0.3)' }}
-                        className="bg-glass-card backdrop-blur-sm border border-white/10 p-6 rounded-xl shadow-glow hover:shadow-glow-lg transition-all duration-300 text-center group hover:border-primary-500/30"
-                      >
-                        <tech.icon 
-                          className={`text-4xl ${tech.color} mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`} 
-                        />
-                        <p className="font-medium text-gray-700 dark:text-gray-300">
-                          {tech.name}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
+          {/* Interactive Navigation Tabs */}
+          <motion.div variants={itemVariants} className="mb-12">
+            <div className="flex justify-center space-x-2 md:space-x-4 mb-8 overflow-x-auto pb-2 scrollbar-thin">
+              {['profile', 'expertise', 'tech'].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-4 py-2 md:px-6 md:py-3 rounded-full transition-all duration-300 ${activeTab === tab 
+                    ? 'bg-gradient-to-r from-primary-600 to-blue-600 text-white shadow-lg shadow-primary-500/20' 
+                    : 'bg-white/5 hover:bg-white/10 text-gray-300'}`}
+                >
+                  <span className="text-sm md:text-base font-medium capitalize">
+                    {tab === 'profile' ? 'Profile' : tab === 'expertise' ? 'Expertise' : 'Tech Stack'}
+                  </span>
+                  {activeTab === tab && (
+                    <motion.div 
+                      className="h-0.5 bg-white mt-1 rounded-full" 
+                      layoutId="activeTab"
+                    />
+                  )}
+                </button>
               ))}
+            </div>
+            
+            {/* Tab Content with AnimatePresence for smooth transitions */}
+            <div className="relative min-h-[300px]">
+              <AnimatePresence mode="wait">
+                {activeTab === 'profile' && (
+                  <motion.div 
+                    key="profile"
+                    variants={tabVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="absolute inset-0"
+                  >
+                    <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-xl">
+                      <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <div className="w-32 h-32 md:w-40 md:h-40 relative rounded-full overflow-hidden border-2 border-primary-500/50 shadow-lg shadow-primary-500/20">
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-blue-500/20 backdrop-blur-sm"></div>
+                          <div className="absolute inset-0 flex items-center justify-center text-5xl text-primary-400">
+                            <FaCode />
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-4 text-center md:text-left">
+                          <h3 className="text-3xl font-bold text-white">
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-blue-400">Digital Innovator</span>
+                          </h3>
+                          
+                          <div className="space-y-4 text-gray-300">
+                            <p className="leading-relaxed">
+                              With a foundation in full-stack development, I transform complex challenges into elegant, user-centric solutions. My approach combines technical expertise with creative problem-solving to build next-generation digital experiences.
+                            </p>
+                            <p className="leading-relaxed">
+                              I'm committed to crafting clean, efficient code while continuously exploring emerging technologies to push the boundaries of what's possible in the digital realm.
+                            </p>
+                          </div>
+
+                          <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
+                            <div className="flex items-center space-x-2 bg-gradient-to-r from-green-500/20 to-green-400/10 border border-green-500/30 px-5 py-2 rounded-full">
+                              <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+                              <span className="text-sm font-medium text-green-400">Available for New Projects</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+                
+                {activeTab === 'expertise' && (
+                  <motion.div 
+                    key="expertise"
+                    variants={tabVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="absolute inset-0"
+                  >
+                    <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-xl">
+                      <h3 className="text-2xl font-bold text-white mb-6 text-center md:text-left">
+                        Core <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-blue-400">Expertise</span>
+                      </h3>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {[
+                          { 
+                            icon: FaLaptopCode, 
+                            title: 'Frontend Development', 
+                            desc: 'Creating responsive, intuitive interfaces with modern frameworks and state-of-the-art animation techniques.',
+                            color: 'from-blue-500 to-primary-500'
+                          },
+                          { 
+                            icon: FaServer, 
+                            title: 'Backend Architecture', 
+                            desc: 'Building scalable, secure API systems and microservices with efficient data management.',
+                            color: 'from-purple-500 to-blue-500'
+                          },
+                          { 
+                            icon: SiThreedotjs, 
+                            title: '3D Web Experiences', 
+                            desc: 'Developing immersive 3D web applications and interactive visualizations.',
+                            color: 'from-green-500 to-blue-500'
+                          },
+                          { 
+                            icon: FaBrain, 
+                            title: 'AI Integration', 
+                            desc: 'Implementing machine learning models and AI-powered features to enhance user experiences.',
+                            color: 'from-red-500 to-purple-500'
+                          }
+                        ].map((item, index) => (
+                          <motion.div 
+                            key={index}
+                            className="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300"
+                            whileHover={{ y: -5, boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.3)' }}
+                          >
+                            <div className="flex items-start space-x-4">
+                              <div className={`p-3 rounded-lg bg-gradient-to-br ${item.color} text-white`}>
+                                <item.icon className="text-xl" />
+                              </div>
+                              <div>
+                                <h4 className="text-xl font-semibold text-white mb-2">{item.title}</h4>
+                                <p className="text-gray-400 text-sm">{item.desc}</p>
+                              </div>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {activeTab === 'tech' && (
+                  <motion.div 
+                    key="tech"
+                    variants={tabVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="absolute inset-0"
+                  >
+                    <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-xl">
+                      <h3 className="text-2xl font-bold text-white mb-6 text-center">
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-blue-400">Technology</span> Arsenal
+                      </h3>
+                      
+                      <div className="space-y-8">
+                        {Object.entries(techStack).map(([category, technologies]) => (
+                          <div key={category} className="mb-8">
+                            <div className="flex items-center mb-4">
+                              <div className="h-px flex-grow bg-gradient-to-r from-transparent via-gray-500/30 to-transparent"></div>
+                              <h4 className="text-lg font-medium px-4 text-gray-300">
+                                {category}
+                              </h4>
+                              <div className="h-px flex-grow bg-gradient-to-r from-transparent via-gray-500/30 to-transparent"></div>
+                            </div>
+                            
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" style={{ perspective: '1000px' }}>
+                              {technologies.map((tech, index) => (
+                                <motion.div
+                                  key={tech.name}
+                                  variants={{
+                                    hidden: { opacity: 0, scale: 0.5, rotateY: -90 },
+                                    visible: { opacity: 1, scale: 1, rotateY: 0 }
+                                  }}
+                                  initial="hidden"
+                                  animate={isInView ? "visible" : "hidden"}
+                                  transition={{ duration: 0.5, delay: index * 0.1, type: 'spring', stiffness: 100 }}
+                                  whileHover={{ 
+                                    scale: 1.05, 
+                                    y: -5, 
+                                    boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.3)',
+                                    borderColor: 'rgba(59, 130, 246, 0.5)'
+                                  }}
+                                  className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-xl transition-all duration-300 text-center group hover:bg-white/10"
+                                >
+                                  <tech.icon 
+                                    className={`text-3xl ${tech.color} mx-auto mb-2 group-hover:scale-110 transition-transform duration-300`} 
+                                  />
+                                  <p className="font-medium text-gray-300 text-sm">
+                                    {tech.name}
+                                  </p>
+                                </motion.div>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         </motion.div>
