@@ -63,7 +63,7 @@ const AboutSection = () => {
 
   return (
     <section id="about" className="section-padding relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/20 to-background"></div>
       
       <div className="container-custom relative z-10">
         <motion.div
@@ -95,9 +95,9 @@ const AboutSection = () => {
               <motion.div
                 key={category}
                 variants={itemVariants}
-                className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-xl"
+                className="glass-card rounded-2xl p-8 hover-lift"
               >
-                <h4 className="text-2xl font-semibold mb-6 text-white text-center">
+                <h4 className="text-2xl font-semibold mb-6 text-foreground text-center">
                   {category}
                 </h4>
                 
@@ -108,15 +108,14 @@ const AboutSection = () => {
                       variants={itemVariants}
                       whileHover={{ 
                         scale: 1.05, 
-                        y: -5, 
-                        boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.3)'
+                        y: -5 
                       }}
-                      className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-xl transition-all duration-300 text-center group hover:bg-white/10"
+                      className="glass-card p-6 rounded-xl text-center group hover-lift hover:shadow-primary/20"
                     >
                       <tech.icon 
                         className={`text-4xl ${tech.color} mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`} 
                       />
-                      <p className="font-medium text-gray-300 text-sm">
+                      <p className="font-medium text-foreground text-sm">
                         {tech.name}
                       </p>
                     </motion.div>

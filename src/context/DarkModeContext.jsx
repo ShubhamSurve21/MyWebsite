@@ -12,32 +12,64 @@ export const useDarkMode = () => {
 
 export const DarkModeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [systemTheme, setSystemTheme] = useState('light');
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setSystemTheme(mediaQuery.matches ? 'dark' : 'light');
+    
+    const handleChange = (e) => {
+      setSystemTheme(e.matches ? 'dark' : 'light');
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    
     const savedTheme = localStorage.getItem('theme');
+    const prefersDark = mediaQuery.matches;
+    
     if (savedTheme) {
       setIsDarkMode(savedTheme === 'dark');
     } else {
-      setIsDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
+      setIsDarkMode(prefersDark);
     }
+    
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
   useEffect(() => {
+    const root = document.documentElement;
+    
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
+      root.classList.add('dark');
+      root.classList.remove('light');
       localStorage.setItem('theme', 'dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      root.classList.remove('dark');
+      root.classList.add('light');
       localStorage.setItem('theme', 'light');
     }
   }, [isDarkMode]);
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    setIsDarkMode(prev => !prev);
+  };
+
+  const setDarkMode = (mode) => {
+    setIsDarkMode(mode === 'dark');
+  };
+
+  const resetToSystem = () => {
+    setIsDarkMode(systemTheme === 'dark');
   };
 
   return (
-    <DarkModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
+    <DarkModeContext.Provider value={{ 
+      isDarkMode, 
+      toggleDarkMode, 
+      setDarkMode, 
+      resetToSystem, 
+      systemTheme 
+    }}>
       {children}
     </DarkModeContext.Provider>
   );

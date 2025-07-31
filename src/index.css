@@ -2,25 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
+  :root {
+    --background: 10 10 25;
+    --foreground: 240 250 255;
+    --card: 20 20 35;
+    --card-foreground: 240 250 255;
+    --popover: 20 20 35;
+    --popover-foreground: 240 250 255;
+    --primary: 0 255 170;
+    --primary-foreground: 10 10 25;
+    --secondary: 255 0 230;
+    --secondary-foreground: 10 10 25;
+    --muted: 30 30 45;
+    --muted-foreground: 180 190 220;
+    --accent: 80 70 255;
+    --accent-foreground: 240 250 255;
+    --destructive: 255 50 100;
+    --destructive-foreground: 10 10 25;
+    --border: 80 70 255;
+    --input: 30 30 45;
+    --ring: 0 255 170;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 3 7 18;
+    --foreground: 248 250 252;
+    --card: 3 7 18;
+    --card-foreground: 248 250 252;
+    --popover: 3 7 18;
+    --popover-foreground: 248 250 252;
+    --primary: 59 130 246;
+    --primary-foreground: 248 250 252;
+    --secondary: 30 41 59;
+    --secondary-foreground: 248 250 252;
+    --muted: 30 41 59;
+    --muted-foreground: 148 163 184;
+    --accent: 30 41 59;
+    --accent-foreground: 248 250 252;
+    --destructive: 220 38 38;
+    --destructive-foreground: 248 250 252;
+    --border: 30 41 59;
+    --input: 30 41 59;
+    --ring: 59 130 246;
+  }
+
+  * {
+    @apply border-[rgb(var(--border))];
+  }
+
   html {
     scroll-behavior: smooth;
   }
   
   body {
-    @apply transition-colors duration-300;
+    @apply bg-background text-foreground transition-all duration-500 ease-in-out;
+    background-image: 
+      radial-gradient(ellipse at top, rgba(var(--primary), 0.3) 0%, transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(var(--secondary), 0.25) 0%, transparent 70%),
+      radial-gradient(ellipse at bottom left, rgba(var(--accent), 0.2) 0%, transparent 60%),
+      linear-gradient(to right, rgba(var(--primary), 0.05), rgba(var(--secondary), 0.05));
+  }
+
+  /* Smooth transitions for all elements */
+  * {
+    @apply transition-colors duration-300 ease-in-out;
+  }
+
+  /* Dark mode specific styles */
+  .dark body {
+    background-image: 
+      radial-gradient(ellipse at top, rgba(var(--primary), 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom, rgba(var(--primary), 0.08) 0%, transparent 50%);
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply bg-primary text-primary-foreground font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 hover:bg-primary/90 border border-primary/50;
   }
   
   .btn-secondary {
-    @apply border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+    @apply border-2 border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-sm shadow-secondary/20 hover:shadow-md hover:shadow-secondary/40;
   }
   
   .section-padding {
@@ -32,7 +96,7 @@
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-primary-600 via-purple-600 to-pink-600 animate-gradient;
+    @apply bg-gradient-to-br from-primary via-accent to-secondary animate-gradient;
   }
   
   .card-hover {
@@ -40,7 +104,28 @@
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent;
+  }
+
+  /* Enhanced glass components */
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-md border border-primary/30 shadow-lg shadow-primary/10 hover:shadow-xl hover:shadow-primary/20 transition-all duration-300;
+  }
+  
+  .glass-nav {
+    @apply bg-card/90 backdrop-blur-xl border-b border-primary/20 shadow-md shadow-primary/10;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/30;
+  }
+  
+  .dark-mode-toggle {
+    @apply relative w-14 h-7 bg-muted border border-primary/30 rounded-full transition-colors duration-300 cursor-pointer shadow-sm shadow-primary/20;
+  }
+  
+  .dark-mode-toggle-thumb {
+    @apply absolute top-1 left-1 w-5 h-5 bg-primary rounded-full transition-transform duration-300 shadow-md;
   }
 }
 
@@ -50,13 +135,13 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-gray-800;
+  @apply bg-muted;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary-500 rounded-full;
+  @apply bg-primary rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary-600;
+  @apply bg-secondary;
 }

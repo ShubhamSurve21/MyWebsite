@@ -310,7 +310,7 @@ const HeroSection = () => {
   
   return (
     <section 
-      className="relative h-screen bg-gradient-to-b from-[#0f0326] via-[#240046] to-[#3c096c] text-white flex flex-col items-center justify-center overflow-hidden"
+      className="relative h-screen bg-gradient-to-b from-background via-secondary/50 to-background text-foreground flex flex-col items-center justify-center overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       {/* Animated Background */}
@@ -343,12 +343,12 @@ const HeroSection = () => {
             transform: `translateX(${mousePosition.x * -10}px) translateY(${mousePosition.y * -5}px)`
           }}
         >
-          <div className="px-6 py-2 bg-white/5 backdrop-blur-xl rounded-full border border-purple-500/30 shadow-lg shadow-purple-500/20 relative overflow-hidden group">
-             <div className="absolute inset-0 bg-gradient-to-r from-violet-600/10 to-fuchsia-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-             <div className="absolute inset-0 bg-gradient-to-r from-violet-600/10 via-transparent to-fuchsia-600/10 opacity-0 group-hover:opacity-100 animate-pulse"></div>
+          <div className="px-6 py-2 glass-card rounded-full border border-primary-500/30 shadow-lg shadow-primary-500/20 relative overflow-hidden group">
+             <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+             <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 via-transparent to-purple-600/10 opacity-0 group-hover:opacity-100 animate-pulse"></div>
              <div className="flex items-center gap-2 relative z-10">
-               <FiCode className="text-purple-400" />
-               <span className="text-purple-200 font-medium">Full Stack Developer & AI Enthusiast</span>
+               <FiCode className="text-primary-500" />
+               <span className="text-foreground font-medium">Full Stack Developer & AI Enthusiast</span>
              </div>
            </div>
         </motion.div>
@@ -365,17 +365,17 @@ const HeroSection = () => {
               transform: `translateX(${mousePosition.x * 20}px) translateY(${mousePosition.y * 10}px)`
             }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-500 to-cyan-400">
+            <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-purple-500 to-cyan-400">
               Hi, I'm <span className="relative inline-block">Shubham
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500"></span>
+                <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary-500 to-purple-500"></span>
               </span>
             </h1>
             
-            <h2 className="text-2xl md:text-3xl font-light mb-6 text-gray-300">
-              Crafting <span className="font-semibold text-white">digital experiences</span> that inspire
+            <h2 className="text-2xl md:text-3xl font-light mb-6 text-muted-foreground">
+              Crafting <span className="font-semibold text-foreground">digital experiences</span> that inspire
             </h2>
             
-            <p className="text-gray-300 text-lg max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+            <p className="text-muted-foreground text-lg max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
               I build innovative web applications with cutting-edge technologies, 
               specializing in creating seamless user experiences powered by AI.
             </p>

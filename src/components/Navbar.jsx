@@ -69,14 +69,33 @@ const Navbar = () => {
 
           {/* Dark Mode Toggle & Mobile Menu */}
           <div className="flex items-center space-x-4">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleDarkMode}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="relative group"
             >
-              {isDarkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={toggleDarkMode}
+                className="p-3 rounded-xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 text-gray-700 dark:text-gray-300 hover:from-gray-200 hover:to-gray-300 dark:hover:from-gray-700 dark:hover:to-gray-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <motion.div
+                  animate={{ rotate: isDarkMode ? 180 : 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {isDarkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
+                </motion.div>
+              </motion.button>
+
+              {/* Tooltip */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileHover={{ opacity: 1, y: 0 }}
+                className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-gray-900 dark:bg-gray-700 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap pointer-events-none"
+              >
+                {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+              </motion.div>
+            </motion.div>
 
             {/* Mobile Menu Button */}
             <motion.button
@@ -103,15 +122,15 @@ const Navbar = () => {
               <div className="px-4 py-2">
                 {navItems.map((item) => (
                   <a
-                     key={item.name}
-                     href={item.href}
-                     onClick={(e) => {
-                       e.preventDefault();
-                       scrollToSection(item.href);
-                       setIsMobileMenuOpen(false);
-                     }}
-                     className="block py-3 px-4 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition duration-300"
-                   >
+                    key={item.name}
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      scrollToSection(item.href)
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className="block py-3 px-4 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition duration-300"
+                  >
                     {item.name}
                   </a>
                 ))}
