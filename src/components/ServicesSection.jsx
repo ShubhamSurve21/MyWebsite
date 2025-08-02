@@ -18,7 +18,7 @@ const ServicesSection = () => {
         'Performance Optimization'
       ],
       technologies: [FaReact, 'Next.js', 'TypeScript', 'Tailwind CSS'],
-      lottieUrl: 'https://assets1.lottiefiles.com/packages/lf20_z01pceyt.json',
+      lottieUrl: 'https://assets2.lottiefiles.com/packages/lf20_tno6cg2w.json',
       color: 'from-blue-500 to-cyan-500'
     },
     {
