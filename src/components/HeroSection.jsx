@@ -102,21 +102,6 @@ const FloatingOrb = ({ isHovered }) => {
 
   return (
     <group ref={group}>
-      {/* Outer energy field */}
-      <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[1.2, 64, 64]} />
-        <MeshDistortMaterial
-          color="#120338"
-          emissive="#6a0dad"
-          emissiveIntensity={0.2}
-          roughness={0.4}
-          metalness={0.8}
-          distort={isHovered ? 0.4 : 0.2} // More distortion when hovered
-          speed={isHovered ? 4 : 2}
-          transparent
-          opacity={0.6}
-        />
-      </mesh>
 
       {/* Realistic Earth sphere */}
       <mesh position={[0, 0, 0]} castShadow receiveShadow>
@@ -152,112 +137,12 @@ const FloatingOrb = ({ isHovered }) => {
           />
         </mesh>
       )}
-      {/* Atmosphere glow */}
-      <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[0.83, 64, 64]} />
-        <meshBasicMaterial
-          color="#5ecfff"
-          transparent
-          opacity={0.18}
-          blending={THREE.AdditiveBlending}
-          side={THREE.BackSide}
-        />
-      </mesh>
+
       {textureError && (
         <Html center style={{ color: 'red', fontSize: 12, background: 'rgba(0,0,0,0.6)', padding: 4, borderRadius: 4 }}>
           Failed to load Earth texture
         </Html>
       )}
-
-      {/* Inner structure - data visualization */}
-      <group ref={innerGroup}>
-        <mesh scale={0.7} rotation={[0, Math.PI / 4, 0]}>
-          <icosahedronGeometry args={[1, 1]} />
-          <meshStandardMaterial
-            color="#ffffff"
-            wireframe
-            emissive="#ff00ff"
-            emissiveIntensity={0.6}
-          />
-        </mesh>
-
-        {/* Data nodes */}
-        {[...Array(5)].map((_, i) => {
-          const angle = (i / 5) * Math.PI * 2;
-          const y = Math.cos(angle) * 0.5;
-          return (
-            <mesh key={`node-${i}`} position={[Math.sin(angle) * 0.5, y, 0]} scale={0.08}>
-              <dodecahedronGeometry />
-              <meshStandardMaterial
-                color="#00b4d8"
-                emissive="#00b4d8"
-                emissiveIntensity={1}
-              />
-            </mesh>
-          );
-        })}
-      </group>
-
-      {/* Orbiting particles with trails */}
-      {[...Array(40)].map((_, i) => {
-        const angle = (i / 40) * Math.PI * 2;
-        const radius = 1.2 + Math.sin(i * 5) * 0.1;
-        const speed = 0.2 + Math.random() * 0.3;
-        const size = 0.015 + Math.random() * 0.025;
-        const colorIndex = i % 4;
-        const color = [
-          "#ff00ff", // Magenta
-          "#00b4d8", // Cyan
-          "#f72585", // Pink
-          "#ffffff"  // White
-        ][colorIndex];
-
-        return (
-          <mesh key={i} position={[
-            Math.sin(angle) * radius,
-            Math.cos(angle) * radius * 0.8,
-            Math.sin(angle * 2) * 0.3
-          ]}>
-            <sphereGeometry args={[size, 8, 8]} />
-            <meshStandardMaterial
-              color={color}
-              emissive={color}
-              emissiveIntensity={1}
-            />
-          </mesh>
-        );
-      })}
-
-      {/* Holographic data elements */}
-      {[...Array(8)].map((_, i) => {
-        const angle = (i / 8) * Math.PI * 2;
-        const radius = 1.5;
-        const yOffset = Math.sin(i * 0.8) * 0.5;
-
-        return (
-          <group key={`symbol-${i}`} position={[
-            Math.sin(angle) * radius,
-            yOffset,
-            Math.cos(angle) * radius
-          ]} scale={0.15} rotation={[0, -angle, 0]}>
-            <Text
-              color="#00ffff"
-              fontSize={0.5}
-              maxWidth={200}
-              lineHeight={1}
-              letterSpacing={0.02}
-              textAlign="center"
-              font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
-              anchorX="center"
-              anchorY="middle"
-              outlineWidth={0.01}
-              outlineColor="#00ffff"
-            >
-              {["AI", "ML", "3D", "UI", "UX", "AR", "VR", "XR"][i % 8]}
-            </Text>
-          </group>
-        );
-      })}
 
       {/* Environment and lighting */}
       <ambientLight intensity={0.3} />
@@ -379,8 +264,6 @@ const HeroSection = () => {
       id="home"
       className="relative min-h-[100dvh] pt-16 bg-gradient-to-b from-background via-secondary/50 to-background text-foreground flex flex-col items-center justify-center overflow-hidden"
     >
-
-
         {/* Futuristic circuit lines */}
         <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTI1LDUwIEw1MCwyNSBMNzUsNTAgTDUwLDc1IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzlkNGVkZCIgc3Ryb2tlLXdpZHRoPSIxIi8+PHBhdGggZD0iTTAgMCBMIDEwMCAxMDAiIHN0cm9rZT0iIzAwYjRkOCIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjUsMTAiLz48L3BhdHRlcm4+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==')]"></div>
 
@@ -485,7 +368,6 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-
           {/* Right: 3D Visualization */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -506,28 +388,9 @@ const HeroSection = () => {
                   <Environment preset="night" />
                 </Suspense>
               </Canvas>
-
-              {/* Enhanced glow effects */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-fuchsia-500/10 rounded-full blur-2xl"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-cyan-500/10 rounded-full blur-xl"></div>
-              </div>
-
-              {/* Interactive hint */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isHovered ? 0 : 0.7 }}
-                transition={{ duration: 0.3 }}
-                className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm flex flex-col items-center"
-              >
-                <span className="px-3 py-1 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-                  Hover to interact
-                </span>
-                <FiArrowDown className="mt-2 animate-bounce" />
-              </motion.div>
             </div>
           </motion.div>
+
         </div>
       </div>
 
