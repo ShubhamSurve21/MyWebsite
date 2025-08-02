@@ -7,7 +7,6 @@ import ServicesSection from './components/ServicesSection'
 import ProjectsSection from './components/ProjectsSection'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
-import AIAssistant from './components/AIAssistant'
 
 function App() {
   return (
@@ -26,7 +25,7 @@ function App() {
         <ContactSection />
       </motion.main>
       <Footer />
-      <AIAssistant />
+
     </div>
   )
 }

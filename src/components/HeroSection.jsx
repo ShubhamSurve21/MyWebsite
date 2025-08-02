@@ -310,6 +310,7 @@ const HeroSection = () => {
 
   return (
     <section
+      id="home"
       className="relative min-h-[100dvh] pt-16 bg-gradient-to-b from-background via-secondary/50 to-background text-foreground flex flex-col items-center justify-center overflow-hidden"
       style={{ minHeight: '100dvh' }}
       onMouseMove={handleMouseMove}
