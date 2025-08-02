@@ -1,6 +1,7 @@
 import React, { Suspense, useRef, useState, useEffect } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Points, PointMaterial, OrbitControls, useGLTF, Environment, ContactShadows, Text, MeshDistortMaterial, RoundedBox } from '@react-three/drei';
+import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber';
+import { TextureLoader } from 'three';
+import { Points, PointMaterial, OrbitControls, useGLTF, Environment, ContactShadows, Text, MeshDistortMaterial, RoundedBox, Html } from '@react-three/drei';
 import { inSphere } from 'maath/random';
 import * as THREE from 'three';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
@@ -46,10 +47,36 @@ const Stars = () => {
 };
 
 // Advanced Floating Orb with interactive elements
+
 const FloatingOrb = ({ isHovered }) => {
   const group = useRef();
   const innerGroup = useRef();
   const { camera } = useThree();
+
+  // Realistic Earth: load diffuse, specular, and cloud textures
+  const [earthTexture, setEarthTexture] = useState(null);
+  const [specularMap, setSpecularMap] = useState(null);
+  const [cloudsMap, setCloudsMap] = useState(null);
+  const [textureError, setTextureError] = useState(false);
+  useEffect(() => {
+    let isMounted = true;
+    const loader = new TextureLoader();
+    loader.load(
+      'https://threejs.org/examples/textures/land_ocean_ice_cloud_2048.jpg',
+      (texture) => { if (isMounted) setEarthTexture(texture); },
+      undefined,
+      () => { if (isMounted) setTextureError(true); }
+    );
+    loader.load(
+      'https://threejs.org/examples/textures/earth_specular_2048.jpg',
+      (texture) => { if (isMounted) setSpecularMap(texture); }
+    );
+    loader.load(
+      'https://threejs.org/examples/textures/earth_clouds_1024.png',
+      (texture) => { if (isMounted) setCloudsMap(texture); }
+    );
+    return () => { isMounted = false; };
+  }, []);
 
   useFrame((state, delta) => {
     if (group.current) {
@@ -91,17 +118,56 @@ const FloatingOrb = ({ isHovered }) => {
         />
       </mesh>
 
-      {/* Core sphere with gradient material */}
-      <mesh position={[0, 0, 0]}>
+      {/* Realistic Earth sphere */}
+      <mesh position={[0, 0, 0]} castShadow receiveShadow>
         <sphereGeometry args={[0.8, 64, 64]} />
-        <meshStandardMaterial
-          color="#9d4edd"
-          emissive="#9d4edd"
-          emissiveIntensity={0.5}
-          metalness={0.9}
-          roughness={0.1}
+        {!textureError && earthTexture ? (
+          <meshPhongMaterial
+            map={earthTexture}
+            specularMap={specularMap}
+            specular={new THREE.Color('#222')}
+            shininess={18}
+            emissive="#111"
+            emissiveIntensity={0.12}
+          />
+        ) : (
+          <meshStandardMaterial
+            color="#9d4edd"
+            metalness={0.7}
+            roughness={0.45}
+            emissive="#222"
+            emissiveIntensity={0.18}
+          />
+        )}
+      </mesh>
+      {/* Cloud layer */}
+      {!textureError && cloudsMap && (
+        <mesh position={[0, 0, 0]}>
+          <sphereGeometry args={[0.815, 64, 64]} />
+          <meshPhongMaterial
+            map={cloudsMap}
+            transparent
+            opacity={0.4}
+            depthWrite={false}
+          />
+        </mesh>
+      )}
+      {/* Atmosphere glow */}
+      <mesh position={[0, 0, 0]}>
+        <sphereGeometry args={[0.83, 64, 64]} />
+        <meshBasicMaterial
+          color="#5ecfff"
+          transparent
+          opacity={0.18}
+          blending={THREE.AdditiveBlending}
+          side={THREE.BackSide}
         />
       </mesh>
+      {textureError && (
+        <Html center style={{ color: 'red', fontSize: 12, background: 'rgba(0,0,0,0.6)', padding: 4, borderRadius: 4 }}>
+          Failed to load Earth texture
+        </Html>
+      )}
 
       {/* Inner structure - data visualization */}
       <group ref={innerGroup}>
@@ -312,26 +378,11 @@ const HeroSection = () => {
     <section
       id="home"
       className="relative min-h-[100dvh] pt-16 bg-gradient-to-b from-background via-secondary/50 to-background text-foreground flex flex-col items-center justify-center overflow-hidden"
-      style={{ minHeight: '100dvh' }}
-      onMouseMove={handleMouseMove}
     >
-      {/* Animated Background */}
-      <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 1.5] }}>
-          <Suspense fallback={null}>
-            <Stars />
-          </Suspense>
-        </Canvas>
 
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-[#240046]/30 to-black/80"></div>
-
-        {/* Animated grid */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0gNDAgMCBMIDAgMCAwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiM5ZDRlZGQyMCIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIiAvPjwvc3ZnPg==')] opacity-20"></div>
 
         {/* Futuristic circuit lines */}
         <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTI1LDUwIEw1MCwyNSBMNzUsNTAgTDUwLDc1IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzlkNGVkZCIgc3Ryb2tlLXdpZHRoPSIxIi8+PHBhdGggZD0iTTAgMCBMIDEwMCAxMDAiIHN0cm9rZT0iIzAwYjRkOCIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjUsMTAiLz48L3BhdHRlcm4+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==')]"></div>
-      </div>
 
       {/* Main Content */}
       <div className="relative z-10 container max-w-screen-xl mx-auto px-4 sm:px-8 flex flex-col flex-1 grow">
