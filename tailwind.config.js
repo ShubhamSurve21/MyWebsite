@@ -4,7 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
+  // Always dark mode, no need for darkMode: 'class'
   theme: {
     screens: {
       'xs': '480px',

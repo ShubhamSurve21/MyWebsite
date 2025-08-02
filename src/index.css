@@ -4,29 +4,6 @@
 
 @layer base {
   :root {
-    --background: 10 10 25;
-    --foreground: 240 250 255;
-    --card: 20 20 35;
-    --card-foreground: 240 250 255;
-    --popover: 20 20 35;
-    --popover-foreground: 240 250 255;
-    --primary: 0 255 170;
-    --primary-foreground: 10 10 25;
-    --secondary: 255 0 230;
-    --secondary-foreground: 10 10 25;
-    --muted: 30 30 45;
-    --muted-foreground: 180 190 220;
-    --accent: 80 70 255;
-    --accent-foreground: 240 250 255;
-    --destructive: 255 50 100;
-    --destructive-foreground: 10 10 25;
-    --border: 80 70 255;
-    --input: 30 30 45;
-    --ring: 0 255 170;
-    --radius: 0.5rem;
-  }
-
-  .dark {
     --background: 3 7 18;
     --foreground: 248 250 252;
     --card: 3 7 18;
@@ -46,6 +23,7 @@
     --border: 30 41 59;
     --input: 30 41 59;
     --ring: 59 130 246;
+    --radius: 0.5rem;
   }
 
   * {
@@ -59,22 +37,13 @@
   body {
     @apply bg-background text-foreground transition-all duration-500 ease-in-out;
     background-image: 
-      radial-gradient(ellipse at top, rgba(var(--primary), 0.3) 0%, transparent 60%),
-      radial-gradient(ellipse at bottom right, rgba(var(--secondary), 0.25) 0%, transparent 70%),
-      radial-gradient(ellipse at bottom left, rgba(var(--accent), 0.2) 0%, transparent 60%),
-      linear-gradient(to right, rgba(var(--primary), 0.05), rgba(var(--secondary), 0.05));
+      radial-gradient(ellipse at top, rgba(var(--primary), 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom, rgba(var(--primary), 0.08) 0%, transparent 50%);
   }
 
   /* Smooth transitions for all elements */
   * {
     @apply transition-colors duration-300 ease-in-out;
-  }
-
-  /* Dark mode specific styles */
-  .dark body {
-    background-image: 
-      radial-gradient(ellipse at top, rgba(var(--primary), 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at bottom, rgba(var(--primary), 0.08) 0%, transparent 50%);
   }
 }
 
@@ -120,13 +89,7 @@
     @apply transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/30;
   }
   
-  .dark-mode-toggle {
-    @apply relative w-14 h-7 bg-muted border border-primary/30 rounded-full transition-colors duration-300 cursor-pointer shadow-sm shadow-primary/20;
-  }
-  
-  .dark-mode-toggle-thumb {
-    @apply absolute top-1 left-1 w-5 h-5 bg-primary rounded-full transition-transform duration-300 shadow-md;
-  }
+
 }
 
 /* Custom scrollbar */
