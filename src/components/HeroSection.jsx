@@ -365,38 +365,34 @@ const HeroSection = () => {
               transform: `translateX(${mousePosition.x * 20}px) translateY(${mousePosition.y * 10}px)`
             }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-purple-500 to-cyan-400">
-              Hi, I'm <span className="relative inline-block">Shubham
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary-500 to-purple-500"></span>
-              </span>
-            </h1>
-            
-            <h2 className="text-2xl md:text-3xl font-light mb-6 text-muted-foreground">
-              Crafting <span className="font-semibold text-foreground">digital experiences</span> that inspire
-            </h2>
-            
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
-              I build innovative web applications with cutting-edge technologies, 
-              specializing in creating seamless user experiences powered by AI.
-            </p>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
-              <FuturisticButton 
-                primary 
-                onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Get in Touch
-              </FuturisticButton>
-              
-              <FuturisticButton
-                onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                View Projects
-              </FuturisticButton>
-            </div>
-            
-            {/* Social Links */}
+            <>
+  <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-purple-500 to-cyan-400">
+  Hi, I'm <span className="relative inline-block text-white drop-shadow-lg font-extrabold">Shubham Surve
+    <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary-500 to-purple-500"></span>
+  </span>
+</h1>
+<h2 className="text-2xl md:text-3xl font-light mb-6 text-muted-foreground">
+  Delivering <span className="font-semibold text-foreground">Intelligent, Scalable Digital Solutions</span> for the Modern Enterprise
+</h2>
+<p className="text-muted-foreground text-lg max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+  I partner with forward-thinking businesses to design and develop high-performance web platforms powered by full-stack technologies and AI innovation. From concept to execution, I craft tailored digital solutions that enhance operational efficiency, elevate user experience, and drive measurable business outcomes. Let’s collaborate to transform your ideas into strategic assets that deliver real impact.
+</p>
+  {/* CTA Buttons */}
+  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+    <FuturisticButton 
+      primary 
+      onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+    >
+      Get in Touch
+    </FuturisticButton>
+    <FuturisticButton
+      onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
+    >
+      View Projects
+    </FuturisticButton>
+  </div>
+</>
+{/* Social Links */}
             <div className="flex justify-center lg:justify-start space-x-6">
               <motion.a 
                 whileHover={{ y: -3, scale: 1.2 }}
