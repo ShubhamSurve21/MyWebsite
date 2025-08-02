@@ -21,7 +21,7 @@ const ContactSection = () => {
       icon: FiMapPin,
       title: 'Location',
       value: 'Pune, Maharashtra',
-      link: 'https://maps.google.com'
+      link: 'https://maps.app.goo.gl/BXAk7F8D2boVDgNa9'
     }
   ]
 
