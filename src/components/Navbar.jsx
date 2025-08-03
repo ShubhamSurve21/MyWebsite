@@ -44,12 +44,26 @@ const Navbar = () => {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 px-4">
-          {/* Logo */}
+          {/* Professional Logo */}
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold text-gradient"
+            whileHover={{ scale: 1.02 }}
+            className="flex items-center space-x-3 cursor-pointer"
+            onClick={() => scrollToSection('#home')}
           >
-            Shubham
+            {/* Logo Icon */}
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+              <span className="text-white font-bold text-lg">S</span>
+            </div>
+            
+            {/* Brand Text */}
+            <div className="flex flex-col">
+              <span className="text-xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent leading-tight">
+                Shubham Surve
+              </span>
+              <span className="text-xs text-gray-400 font-medium tracking-wider uppercase">
+                Web & Mobile Developer
+              </span>
+            </div>
           </motion.div>
 
           {/* Desktop Navigation */}

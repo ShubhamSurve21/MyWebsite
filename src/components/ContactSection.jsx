@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import {
   FiMail, FiPhone, FiMapPin, FiCopy, FiCheck, FiLinkedin, FiExternalLink
 } from 'react-icons/fi';
+import { FaHeart } from 'react-icons/fa';
 
 const contactInfo = [
   {
@@ -177,6 +178,13 @@ const ContactSection = () => {
             </p>
           </div>
         </motion.div>
+        
+        {/* Footer Credit */}
+        <div className="mt-8 pt-6 border-t border-white/10">
+          <p className="text-center text-sm text-gray-400">
+            Made with <FaHeart className="inline text-red-500 mx-1" /> by Shubham | Website & Mobile App Developer
+          </p>
+        </div>
       </div>
     </section>
   );

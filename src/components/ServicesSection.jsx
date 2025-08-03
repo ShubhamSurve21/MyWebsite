@@ -18,7 +18,7 @@ const ServicesSection = () => {
         'SEO Optimization & Performance'
       ],
       technologies: [FaReact, 'Next.js', 'TypeScript', 'Tailwind CSS'],
-      lottieUrl: 'https://assets2.lottiefiles.com/packages/lf20_tno6cg2w.json',
+      lottieUrl: 'https://assets5.lottiefiles.com/packages/lf20_qp1q7mct.json',
       color: 'from-blue-500 to-cyan-500'
     },
     {
@@ -33,7 +33,7 @@ const ServicesSection = () => {
         'Mobile Performance Optimization'
       ],
       technologies: ['React Native', 'Flutter', FaMobile, 'Firebase'],
-      lottieUrl: 'https://assets1.lottiefiles.com/packages/lf20_3rqwsqnj.json',
+      lottieUrl: 'https://assets5.lottiefiles.com/packages/lf20_w51pcehl.json',
       color: 'from-green-500 to-emerald-500'
     },
     {
@@ -48,7 +48,7 @@ const ServicesSection = () => {
         'Automated Business Processes'
       ],
       technologies: ['OpenAI API', 'TensorFlow', FaBrain, 'Python'],
-      lottieUrl: 'https://assets1.lottiefiles.com/packages/lf20_o6spyjnc.json',
+      lottieUrl: 'https://assets2.lottiefiles.com/packages/lf20_fcfjwiyb.json',
       color: 'from-purple-500 to-pink-500'
     }
   ]
