@@ -1,151 +1,185 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { FiMail, FiPhone, FiMapPin, FiLinkedin } from 'react-icons/fi'
-import { Player } from '@lottiefiles/react-lottie-player'
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import {
+  FiMail, FiPhone, FiMapPin, FiCopy, FiCheck, FiLinkedin, FiExternalLink
+} from 'react-icons/fi';
+
+const contactInfo = [
+  {
+    title: 'Email Address',
+    value: 'shubhams2121@gmail.com',
+    icon: FiMail,
+    link: 'mailto:shubhams2121@gmail.com',
+    gradient: 'from-blue-600 to-indigo-600',
+    description: 'Drop me a line anytime'
+  },
+  {
+    title: 'Phone Number',
+    value: '+91 8208146451',
+    icon: FiPhone,
+    link: 'tel:+918208146451',
+    gradient: 'from-emerald-600 to-teal-600',
+    description: 'Available for calls'
+  },
+  {
+    title: 'Location',
+    value: 'Pune, Maharashtra',
+    icon: FiMapPin,
+    link: 'https://maps.app.goo.gl/BXAk7F8D2boVDgNa9',
+    gradient: 'from-purple-600 to-violet-600',
+    description: 'Based in India'
+  }
+];
 
 const ContactSection = () => {
-  const contactInfo = [
-    {
-      icon: FiMail,
-      title: 'Email',
-      value: 'shubhams2121@gmail.com',
-      link: 'mailto:shubhams2121@gmail.com'
-    },
-    {
-      icon: FiPhone,
-      title: 'Phone',
-      value: '+91 8208146451',
-      link: 'tel:+918208146451'
-    },
-    {
-      icon: FiMapPin,
-      title: 'Location',
-      value: 'Pune, Maharashtra',
-      link: 'https://maps.app.goo.gl/BXAk7F8D2boVDgNa9'
-    }
-  ]
+  const [copied, setCopied] = useState(null);
 
-  const socialLinks = [
-    {
-      icon: FiLinkedin,
-      name: 'LinkedIn',
-      url: 'https://linkedin.com/in/shubhams21',
-      color: 'hover:text-blue-600'
-    }
-  ]
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5
-      }
-    }
-  }
+  const handleCopy = (text, key) => {
+    navigator.clipboard.writeText(text);
+    setCopied(key);
+    setTimeout(() => setCopied(null), 2000);
+  };
 
   return (
-    <section id="contact" className="section-padding relative overflow-hidden bg-gray-900">
-      {/* Unique animated background accent */}
+    <section
+      id="contact"
+      className="h-screen py-8 px-4 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 text-white relative overflow-hidden flex items-center"
+    >
+      {/* Professional Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* AI neural network background accent */}
-        <Player
-          autoplay
-          loop
-          src="https://assets8.lottiefiles.com/packages/lf20_1pxqjqps.json" // AI neural network animation
-          style={{ height: '100%', width: '100%', position: 'absolute', top: 0, left: 0, opacity: 0.13 }}
-        />
+        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-600/5 blur-3xl rounded-full" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-600/5 blur-3xl rounded-full" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-blue-600/3 to-purple-600/3 blur-3xl rounded-full" />
       </div>
-      <div className="container-custom relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <motion.div
-            variants={itemVariants}
-            className="text-center mb-12 relative"
-          >
-            {/* AI accent animation near header */}
-            <div className="absolute left-1/2 -translate-x-1/2 -top-20 md:-top-24 z-10">
-              <Player
-                autoplay
-                loop
-                src="https://assets10.lottiefiles.com/packages/lf20_9cyyl8i9.json" // AI brain animation
-                style={{ height: '80px', width: '80px' }}
-              />
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-400 to-white">
-              Contact Me
-            </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Feel free to reach out for collaborations, freelance work, or just to say hi!
-            </p>
-          </motion.div>
 
-          <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-center justify-center">
-            {/* Contact Info */}
+      <div className="relative z-10 max-w-6xl mx-auto w-full">
+        {/* Compact Header */}
+        <div className="text-center mb-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+          >
+            Let's Build Something <span className="text-blue-400">Extraordinary</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-gray-300 text-base max-w-2xl mx-auto"
+          >
+            Ready to collaborate on innovative solutions and meaningful digital experiences?
+          </motion.p>
+        </div>
+
+        {/* Compact Contact Cards */}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          {contactInfo.map((item, idx) => (
             <motion.div
-              variants={itemVariants}
-              className="flex-1 min-w-[260px] max-w-[350px] w-full bg-white/5 border border-white/10 rounded-xl p-8 shadow-xl mb-8 md:mb-0"
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="group relative bg-white/[0.02] backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300 cursor-pointer"
+              onClick={() => window.open(item.link, '_blank')}
             >
-              <h3 className="text-xl font-semibold text-white mb-6">Contact Info</h3>
-              <ul className="flex flex-col gap-6">
-                {contactInfo.map((info, idx) => (
-                  <li key={idx} className="flex items-center gap-4">
-                    <span className="text-2xl text-cyan-400">
-                      <info.icon />
-                    </span>
-                    <div>
-                      <div className="text-white font-medium">{info.title}</div>
-                      <a href={info.link} target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:underline">
-                        {info.value}
-                      </a>
-                    </div>
-                  </li>
-                ))}
-               </ul>
+              {/* Hover Glow Effect */}
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${item.gradient} rounded-2xl blur-xl`} />
+              
+              {/* Icon */}
+              <div className={`relative w-12 h-12 bg-gradient-to-br ${item.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                <item.icon size={20} className="text-white" />
+              </div>
+              
+              {/* Content */}
+              <div className="relative">
+                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-blue-200 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-gray-400 text-xs mb-2">
+                  {item.description}
+                </p>
+                <p className="text-gray-200 font-medium mb-4 text-sm">
+                  {item.value}
+                </p>
+                
+                {/* Action Buttons */}
+                <div className="flex items-center gap-2">
+                  <motion.button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCopy(item.value, item.title);
+                    }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="w-8 h-8 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition-all duration-200 group/btn"
+                  >
+                    {copied === item.title ? (
+                      <FiCheck className="text-green-400 w-3 h-3" />
+                    ) : (
+                      <FiCopy className="text-gray-300 group-hover/btn:text-white w-3 h-3" />
+                    )}
+                  </motion.button>
+                  
+                  <div className="w-8 h-8 bg-white/10 group-hover:bg-white/20 rounded-lg flex items-center justify-center transition-all duration-200">
+                    <FiExternalLink className="text-gray-400 group-hover:text-white w-3 h-3" />
+                  </div>
+                </div>
+              </div>
             </motion.div>
-          </div>
+          ))}
+        </div>
 
-          {/* Call to Action */}
-          <motion.div 
-            variants={itemVariants}
-            className="text-center mt-16 p-8 bg-gradient-to-r from-primary-600 to-purple-600 rounded-2xl text-white"
-          >
-            <h3 className="text-2xl font-bold mb-4">
-              Ready to Start Your Project?
-            </h3>
-            <p className="text-lg mb-6 opacity-90">
-              Let's turn your ideas into reality. I'm here to help you build something amazing.
-            </p>
+        {/* Compact CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center"
+        >
+          <h3 className="text-xl font-bold text-white mb-3">
+            Ready to Start Your Project?
+          </h3>
+          <p className="text-gray-300 text-sm mb-6 max-w-xl mx-auto">
+            Let's collaborate and bring your vision to life with cutting-edge technology.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <motion.a
-              href="mailto:shubham@example.com"
+              href="mailto:shubhams2121@gmail.com?subject=Project Collaboration"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-blue-500/25 transition-all duration-300 text-sm"
             >
-              <FiMail size={20} />
-              Get Started Today
+              <FiMail size={16} />
+              Start a Project
             </motion.a>
-          </motion.div>
+            
+            <motion.a
+              href="https://linkedin.com/in/shubhams21"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white px-6 py-3 rounded-lg font-semibold backdrop-blur-sm transition-all duration-300 text-sm"
+            >
+              <FiLinkedin size={16} />
+              Connect on LinkedIn
+            </motion.a>
+          </div>
+          
+          <div className="mt-4 pt-4 border-t border-white/10">
+            <p className="text-gray-400 text-xs">
+              <span className="font-medium text-gray-300">Available for:</span> Full-stack Development • UI/UX Design • Technical Consulting
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ContactSection
+export default ContactSection;
