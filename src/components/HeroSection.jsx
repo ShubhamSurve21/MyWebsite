@@ -1,4 +1,5 @@
 import React from 'react';
+import { Player } from '@lottiefiles/react-lottie-player';
 import { motion } from 'framer-motion';
 import { FiLinkedin, FiMail, FiArrowDown, FiCode } from 'react-icons/fi';
 
@@ -117,35 +118,19 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="flex items-center justify-center order-1 lg:order-2"
+            className="flex items-center justify-center order-2 lg:order-2"
           >
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-              {/* Animated Background Circles */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full border-2 border-gradient-to-r from-primary/20 to-purple-400/20"
-              />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-4 rounded-full border border-gradient-to-r from-purple-400/30 to-pink-400/30"
-              />
-              
+            <div className="flex items-center justify-center min-h-[220px] min-w-[220px] w-full">
               {/* Center Element */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-8 bg-gradient-to-br from-primary/20 to-purple-600/20 rounded-full backdrop-blur-sm border border-white/10 flex items-center justify-center"
-              >
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="w-32 h-32 bg-gradient-to-br from-primary to-purple-600 rounded-full flex items-center justify-center shadow-2xl"
-                >
-                  <FiCode size={48} className="text-white" />
-                </motion.div>
-              </motion.div>
+              <div className="flex items-center justify-center w-full h-full">
+                <Player
+                  autoplay
+                  loop
+                  src="https://assets2.lottiefiles.com/packages/lf20_1pxqjqps.json" // Futuristic robot head
+                  style={{ height: '220px', width: '220px' }}
+                  className="lg:!h-[520px] lg:!w-[520px]"
+                />
+              </div>
             </div>
           </motion.div>
         </div>
