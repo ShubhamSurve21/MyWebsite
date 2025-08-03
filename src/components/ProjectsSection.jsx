@@ -6,7 +6,7 @@ const ProjectsSection = () => {
     {
       id: 1,
       title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution with payment and inventory features.',
+      description: 'A comprehensive e-commerce website solution with payment and inventory features.',
       lottieUrl: 'https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json' // shopping cart animation
     },
     {

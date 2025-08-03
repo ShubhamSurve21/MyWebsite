@@ -173,7 +173,7 @@ const ContactSection = () => {
           
           <div className="mt-4 pt-4 border-t border-white/10">
             <p className="text-gray-400 text-xs">
-              <span className="font-medium text-gray-300">Available for:</span> Full-stack Development • UI/UX Design • Technical Consulting
+              <span className="font-medium text-gray-300">Professional Services:</span> Website Development • Mobile App Development • UI/UX Design • Technical Consulting
             </p>
           </div>
         </motion.div>

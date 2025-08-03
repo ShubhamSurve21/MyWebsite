@@ -77,7 +77,7 @@ const Footer = () => {
         {/* Bottom Line */}
         <div className="mt-8 pt-6 border-t border-gray-700">
           <p className={`text-center text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            Made with <FaHeart className="inline text-red-500 mx-1" /> by Shubham | Full Stack Developer
+            Made with <FaHeart className="inline text-red-500 mx-1" /> by Shubham | Website & Mobile App Developer
           </p>
         </div>
       </div>

@@ -305,7 +305,7 @@ const HeroSection = () => {
               {/* Paragraph */}
               <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed tracking-wide">
                 I partner with forward-thinking businesses to design and develop high-performance web
-                platforms powered by full-stack technologies and AI innovation. From concept to execution, I
+                platforms powered by modern web and mobile technologies with AI innovation. From concept to execution, I
                 craft tailored digital solutions that enhance operational efficiency, elevate user experience,
                 and drive measurable business outcomes.
                 <br className="hidden sm:block" />

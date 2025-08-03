@@ -78,7 +78,7 @@ const AboutSection = () => {
               About Me
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              I'm a passionate full-stack developer who loves building beautiful, performant web applications. 
+              I'm a passionate website and mobile app developer who loves building beautiful, performant digital solutions. 
               With expertise in modern technologies, I transform ideas into immersive digital experiences that users love.
             </p>
           </motion.div>

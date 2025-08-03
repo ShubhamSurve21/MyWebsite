@@ -1,53 +1,53 @@
 import React from 'react';
 import { motion } from 'framer-motion'
-import { FiCode, FiServer, FiLayers } from 'react-icons/fi';
-import { FaReact, FaNodeJs, FaDatabase } from 'react-icons/fa';
+import { FiMonitor, FiSmartphone, FiCpu } from 'react-icons/fi';
+import { FaReact, FaNodeJs, FaDatabase, FaMobile, FaBrain } from 'react-icons/fa';
 import ServiceCard from './ServiceCard';
 
 const ServicesSection = () => {
   const services = [
     {
-      icon: FiCode,
-      title: 'Frontend Development',
-      description: 'Creating beautiful, responsive, and interactive user interfaces using modern frameworks like React, Next.js, and Vue.js.',
+      icon: FiMonitor,
+      title: 'Website Development',
+      description: 'Professional website development services creating responsive, high-performance web applications tailored to your business needs.',
       features: [
-        'Responsive Web Design',
-        'Single Page Applications',
-        'Progressive Web Apps',
-        'UI/UX Implementation',
-        'Performance Optimization'
+        'Custom Website Design & Development',
+        'E-commerce Platform Solutions',
+        'Content Management Systems',
+        'Progressive Web Applications',
+        'SEO Optimization & Performance'
       ],
       technologies: [FaReact, 'Next.js', 'TypeScript', 'Tailwind CSS'],
       lottieUrl: 'https://assets2.lottiefiles.com/packages/lf20_tno6cg2w.json',
       color: 'from-blue-500 to-cyan-500'
     },
     {
-      icon: FiServer,
-      title: 'Backend Development',
-      description: 'Building robust, scalable server-side applications with secure APIs, database design, and cloud integration.',
+      icon: FiSmartphone,
+      title: 'Mobile App Development',
+      description: 'Cross-platform mobile application development delivering native-quality experiences for iOS and Android platforms.',
       features: [
-        'RESTful API Development',
-        'Database Design & Optimization',
-        'Authentication & Authorization',
-        'Cloud Services Integration',
-        'Microservices Architecture'
+        'Cross-Platform Mobile Apps',
+        'Native iOS & Android Development',
+        'Mobile UI/UX Design',
+        'App Store Deployment',
+        'Mobile Performance Optimization'
       ],
-      technologies: [FaNodeJs, 'Express.js', 'Python', 'PostgreSQL'],
+      technologies: ['React Native', 'Flutter', FaMobile, 'Firebase'],
       lottieUrl: 'https://assets1.lottiefiles.com/packages/lf20_3rqwsqnj.json',
       color: 'from-green-500 to-emerald-500'
     },
     {
-      icon: FiLayers,
-      title: 'Full Stack Solutions',
-      description: 'End-to-end web application development from concept to deployment, ensuring seamless integration between frontend and backend.',
+      icon: FiCpu,
+      title: 'AI Integration',
+      description: 'Intelligent automation and AI-powered features integration to enhance your digital products with cutting-edge artificial intelligence.',
       features: [
-        'Complete Web Applications',
-        'E-commerce Platforms',
-        'Content Management Systems',
-        'Real-time Applications',
-        'DevOps & Deployment'
+        'AI-Powered Chatbots & Assistants',
+        'Machine Learning Implementation',
+        'Natural Language Processing',
+        'Predictive Analytics Integration',
+        'Automated Business Processes'
       ],
-      technologies: ['MERN Stack', 'Next.js', FaDatabase, 'AWS'],
+      technologies: ['OpenAI API', 'TensorFlow', FaBrain, 'Python'],
       lottieUrl: 'https://assets1.lottiefiles.com/packages/lf20_o6spyjnc.json',
       color: 'from-purple-500 to-pink-500'
     }
@@ -95,7 +95,7 @@ const ServicesSection = () => {
               What I Do
             </h2>
             <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-              I provide end-to-end web development services, transforming ideas into high-quality, scalable, and user-centric digital products.
+              I deliver comprehensive digital solutions spanning website development, mobile applications, and AI integration to drive your business forward.
             </p>
           </motion.div>
 
