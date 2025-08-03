@@ -54,7 +54,7 @@ const Navbar = () => {
               className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-fuchsia-600 rounded-2xl shadow-lg flex items-center justify-center"
               style={{ boxShadow: '0 4px 20px rgba(255, 0, 128, 0.3)' }}
             >
-              <span className="text-white font-extrabold text-xl">S</span>
+              <span className="text-white font-extrabold text-xl">SS</span>
             </motion.div>
 
             <div className="flex flex-col leading-tight">

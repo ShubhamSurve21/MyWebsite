@@ -23,18 +23,6 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col justify-center text-center lg:text-left order-2 lg:order-1"
           >
-            {/* Greeting */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="mb-6"
-            >
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-muted-foreground">
-                <FiCode className="text-primary" />
-                Welcome to my digital space
-              </span>
-            </motion.div>
 
             {/* Main Heading */}
             <motion.h1
