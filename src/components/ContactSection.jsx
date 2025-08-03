@@ -44,7 +44,7 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="h-screen py-8 px-4 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 text-white relative overflow-hidden flex items-center"
+      className="min-h-screen py-8 pb-10 px-4 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 text-white relative overflow-hidden flex flex-col overflow-y-auto"
     >
       {/* Professional Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
