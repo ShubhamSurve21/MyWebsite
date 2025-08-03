@@ -337,16 +337,6 @@ const HeroSection = () => {
               <motion.a
                 whileHover={{ y: -4, scale: 1.2 }}
                 transition={{ type: 'spring', stiffness: 300 }}
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-purple-400 transition-all duration-300"
-              >
-                <FiGithub size={26} />
-              </motion.a>
-              <motion.a
-                whileHover={{ y: -4, scale: 1.2 }}
-                transition={{ type: 'spring', stiffness: 300 }}
                 href="https://linkedin.com/in/shubhams21"
                 target="_blank"
                 rel="noopener noreferrer"
