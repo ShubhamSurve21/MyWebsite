@@ -7,14 +7,14 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[100dvh] pt-16 bg-gradient-to-b from-background via-secondary/50 to-background text-foreground flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-[100dvh] pt-24 pb-4 bg-gradient-to-b from-background via-secondary/50 to-background text-foreground flex flex-col items-center justify-center overflow-hidden"
     >
       {/* Futuristic circuit lines */}
       <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTI1LDUwIEw1MCwyNSBMNzUsNTAgTDUwLDc1IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzlkNGVkZCIgc3Ryb2tlLXdpZHRoPSIxIi8+PHBhdGggZD0iTTAgMCBMIDEwMCAxMDAiIHN0cm9rZT0iIzAwYjRkOCIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjUsMTAiLz48L3BhdHRlcm4+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==')]"></div>
 
       {/* Main Content */}
       <div className="relative z-10 container max-w-screen-xl mx-auto px-4 sm:px-8 flex flex-col flex-1 grow">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-4rem)]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 items-center min-h-[calc(100vh-4rem)]">
           
           {/* Left Content */}
           <motion.div
@@ -56,7 +56,7 @@ const HeroSection = () => {
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-3">
                 <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
                   <a
                     href="#contact"
