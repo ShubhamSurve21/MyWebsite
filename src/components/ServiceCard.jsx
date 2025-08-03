@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Player } from '@lottiefiles/react-lottie-player';
-import Tilt from 'react-parallax-tilt';
+// import Tilt from 'react-parallax-tilt'; // Removed for Vercel compatibility
 
 const ServiceCard = ({ service }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -23,18 +23,14 @@ const ServiceCard = ({ service }) => {
   };
   
   return (
-    <Tilt
-      className="parallax-effect-glare-scale"
-      perspective={500}
-      glareEnable={true}
-      glareMaxOpacity={0.45}
-      scale={1.02}
-      gyroscope={true}
-      tiltMaxAngleX={10}
-      tiltMaxAngleY={10}
-    >
     <motion.div
-      whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2)' }}
+      whileHover={{ 
+        y: -10, 
+        rotateX: 5, 
+        rotateY: 5, 
+        scale: 1.02,
+        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2)' 
+      }}
       className="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 h-full flex flex-col overflow-hidden group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -71,7 +67,6 @@ const ServiceCard = ({ service }) => {
       </div>
       <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${service.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out`}></div>
     </motion.div>
-   </Tilt>
   );
 };
 
