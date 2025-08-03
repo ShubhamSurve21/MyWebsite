@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiMenu, FiX } from 'react-icons/fi'
-import { useDarkMode } from '../context/DarkModeContext'
 
 const Navbar = () => {
-  const { isDarkMode } = useDarkMode()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -38,63 +36,66 @@ const Navbar = () => {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-gray-900/90 backdrop-blur-md shadow-lg'
+          ? 'bg-black/70 backdrop-blur-md shadow-xl'
           : 'bg-transparent'
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-16 px-4">
-          {/* Professional Logo */}
+        <div className="flex items-center justify-between h-20 px-4">
+          {/* Logo */}
           <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="flex items-center space-x-3 cursor-pointer"
+            whileHover={{ scale: 1.03 }}
+            className="flex items-center space-x-4 cursor-pointer"
             onClick={() => scrollToSection('#home')}
           >
-            {/* Logo Icon */}
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-lg">S</span>
-            </div>
-            
-            {/* Brand Text */}
-            <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent leading-tight">
+            <motion.div
+              animate={{ y: [0, -2, 0] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-fuchsia-600 rounded-2xl shadow-lg flex items-center justify-center"
+              style={{ boxShadow: '0 4px 20px rgba(255, 0, 128, 0.3)' }}
+            >
+              <span className="text-white font-extrabold text-xl">S</span>
+            </motion.div>
+
+            <div className="flex flex-col leading-tight">
+              <span className="text-xl md:text-2xl font-extrabold bg-gradient-to-r from-white via-purple-300 to-pink-400 bg-clip-text text-transparent tracking-wide animate-gradient-x">
                 Shubham Surve
               </span>
-              <span className="text-xs text-gray-400 font-medium tracking-wider uppercase">
+              <span className="text-[11px] md:text-xs uppercase tracking-widest text-gray-400 font-medium">
                 Web & Mobile Developer
               </span>
             </div>
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-10">
             {navItems.map((item) => (
               <motion.button
                 key={item.name}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection(item.href)}
-                className="text-gray-300 hover:text-primary-400 transition-colors duration-200 font-medium"
+                className="text-sm font-medium text-gray-300 hover:text-pink-400 transition-all duration-200"
               >
                 {item.name}
               </motion.button>
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center">
+          {/* Mobile Toggle */}
+          <div className="md:hidden">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 transition-colors duration-200"
+              className="p-2 rounded-xl bg-gray-900 text-white hover:bg-gray-700"
             >
               {isMobileMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
             </motion.button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -102,22 +103,17 @@ const Navbar = () => {
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden bg-gray-800 absolute top-16 left-0 right-0 shadow-lg z-20 overflow-hidden"
+              className="md:hidden bg-gray-900 text-white shadow-lg px-6 py-4 rounded-b-2xl z-40 absolute left-0 right-0 top-20"
             >
-              <div className="px-4 py-2">
+              <div className="space-y-4">
                 {navItems.map((item) => (
-                  <a
+                  <button
                     key={item.name}
-                    href={item.href}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      scrollToSection(item.href)
-                      setIsMobileMenuOpen(false)
-                    }}
-                    className="block py-3 px-4 text-white hover:bg-gray-700 rounded-lg transition duration-300"
+                    onClick={() => scrollToSection(item.href)}
+                    className="block w-full text-left text-base py-2 px-3 rounded-lg hover:bg-gray-700 transition"
                   >
                     {item.name}
-                  </a>
+                  </button>
                 ))}
               </div>
             </motion.div>
