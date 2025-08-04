@@ -25,9 +25,12 @@ const Navbar = () => {
   const scrollToSection = (href) => {
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      element.scrollIntoView({ behavior: 'smooth' });
+      // Wait for scroll to start before closing menu in mobile view
+      setTimeout(() => setIsMobileMenuOpen(false), 400);
+    } else {
+      setIsMobileMenuOpen(false);
     }
-    setIsMobileMenuOpen(false)
   }
 
   return (
