@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Player } from '@lottiefiles/react-lottie-player';
-// import Tilt from 'react-parallax-tilt'; // Removed for Vercel compatibility
 
 const ServiceCard = ({ service }) => {
   const [isHovered, setIsHovered] = useState(false);

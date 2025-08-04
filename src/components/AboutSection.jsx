@@ -1,12 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import {
-  FaReact, FaNodeJs, FaJs, FaLaptopCode, FaServer,
-} from 'react-icons/fa';
-import {
-  SiTypescript, SiNextdotjs, SiTailwindcss, SiMongodb,
-  SiPostgresql, SiExpress, SiGraphql, SiVuedotjs, SiFlutter,
-} from 'react-icons/si';
+import { FaReact, FaNodeJs, FaJs, FaLaptopCode, FaServer } from 'react-icons/fa';
+import { SiTypescript, SiNextdotjs, SiTailwindcss, SiMongodb, SiPostgresql, SiExpress, SiGraphql, SiVuedotjs, SiFlutter } from 'react-icons/si';
 
 const techStack = {
   Web: [
